@@ -8,6 +8,10 @@ function SearchComponent() {
     //Store temperory search result to display in search corpus area
     const [tempResult, setTempResult] = useState([]);
 
+    //Store words that should be removed from search corpus area
+    const [removeValue, setRemoveValue] = useState([]);
+
+
 
     // Handle input changes
     const handleSearchInputChanges = (e) => {
@@ -21,14 +25,13 @@ function SearchComponent() {
             fetch("http://localhost:9000/search?search=" + searchValue)
                 .then(res => res.json())
                 .then((res) => {
-                    setTempResult(res.matchList)
-                    console.log(tempResult);
+                    var newList = (res.matchList).filter(item => !removeValue.includes(item));
+                    setTempResult(newList)
                 });
         }
     }
 
     useEffect(() => {
-        console.log("Search message inside useEffect: " + searchValue);
         if (searchValue) {
             callSearchAPI();
         }
@@ -36,6 +39,14 @@ function SearchComponent() {
             setTempResult([])
     }, [searchValue])
 
+
+    useEffect(() => {
+        console.log("removed : ", removeValue);
+        if (removeValue)
+            callSearchAPI();
+        else
+            setTempResult([])
+    }, [removeValue])
 
 
     return (
@@ -79,7 +90,7 @@ function SearchComponent() {
                                                 return (
                                                     <div key={i} className='search-suggestion-div'>
                                                         <li style={{ color: 'black' }}>{res}</li>
-                                                        <i className="fa fa-times"></i>
+                                                        <i onClick={() => { setRemoveValue([...removeValue, res]); console.log(removeValue) }} className="fa fa-times"></i>
                                                     </div>
                                                 );
                                             })
