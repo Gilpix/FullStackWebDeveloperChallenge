@@ -2,14 +2,39 @@ import React, { useState, useEffect } from 'react'
 
 function SearchComponent() {
 
+    // Store current search term
     const [searchValue, setSearchValue] = useState("");
 
+    //Store temperory search result to display in search corpus area
+    const [tempResult, setTempResult] = useState([]);
 
 
-    const handleSearchInputChanges = async (e) => {
-        await setSearchValue(e.target.value);
+    // Handle input changes
+    const handleSearchInputChanges = (e) => {
+        setSearchValue(e.target.value);
         console.log(searchValue)
     }
+
+    // Fetch search result from search api using GET Request
+    const callSearchAPI = () => {
+        if (searchValue) {
+            fetch("http://localhost:9000/search?search=" + searchValue)
+                .then(res => res.json())
+                .then((res) => {
+                    setTempResult(res.matchList)
+                    console.log(tempResult);
+                });
+        }
+    }
+
+    useEffect(() => {
+        console.log("Search message inside useEffect: " + searchValue);
+        if (searchValue) {
+            callSearchAPI();
+        }
+        else
+            setTempResult([])
+    }, [searchValue])
 
 
 
@@ -46,6 +71,7 @@ function SearchComponent() {
                                             <button id='submit-btn' type="submit" name="search" value="SEARCH"><i className="fas fa-search"></i></button>
                                         </div>
                                     </form>
+                                    {/* Display 3 most matched words section */}
                                     <div className="autocom-box">
                                     </div>
                                 </div>
