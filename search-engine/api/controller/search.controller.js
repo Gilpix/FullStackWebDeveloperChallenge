@@ -37,9 +37,9 @@ exports.searchAll = (req, res) => {
         }
     });
     if (matchList.length > 0)
-        res.send({ matchList });
+        res.send({ matchList, "status": 'ok' });
     else
-        res.send('No result found')
+        res.send({ "status": 'no' })
 
 };
 

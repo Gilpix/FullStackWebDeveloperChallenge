@@ -50,8 +50,13 @@ function SearchComponent() {
             fetch("http://localhost:9000/search?search=" + searchValue)
                 .then(res => res.json())
                 .then((res) => {
-                    var newList = (res.matchList).filter(item => !removeValue.includes(item));
-                    setTempResult(newList)
+                    if (res.status === 'ok') {
+                        var newList = (res.matchList).filter(item => !removeValue.includes(item));
+                        setTempResult(newList)
+                    }
+                    else {
+                        setTempResult([]);
+                    }
                 });
         }
     }
