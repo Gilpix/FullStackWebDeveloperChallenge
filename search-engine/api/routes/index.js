@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const search = require("../controller/search.controller.js");
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -7,8 +9,6 @@ router.get('/', function (req, res, next) {
 });
 
 //Search route 
-router.get('/search', function (req, res, next) {
-  res.send('testing search route');
-});
+router.get("/search", search.searchAll);
 
 module.exports = router;
