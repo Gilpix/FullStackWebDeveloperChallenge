@@ -50,6 +50,7 @@ function SearchComponent() {
                                 <div className='search-result-div my-5'>
                                     <div className='row'>
 
+
                                     </div>
                                 </div>
 
@@ -73,6 +74,16 @@ function SearchComponent() {
                                     </form>
                                     {/* Display 3 most matched words section */}
                                     <div className="autocom-box">
+                                        {
+                                            tempResult.slice(0, 3).map((res, i) => {
+                                                return (
+                                                    <div key={i} className='search-suggestion-div'>
+                                                        <li style={{ color: 'black' }}>{res}</li>
+                                                        <i className="fa fa-times"></i>
+                                                    </div>
+                                                );
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>
