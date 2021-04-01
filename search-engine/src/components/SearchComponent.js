@@ -11,6 +11,9 @@ function SearchComponent() {
     //Store words that should be removed from search corpus area
     const [removeValue, setRemoveValue] = useState([]);
 
+    //Store final search result to display to the user
+    const [finalResult, setFinalResult] = useState([]);
+
 
 
     // Handle input changes
@@ -18,6 +21,28 @@ function SearchComponent() {
         setSearchValue(e.target.value);
         console.log(searchValue)
     }
+
+    // Resets the input field 
+    const resetInputField = () => {
+        setSearchValue("");
+    }
+
+
+    //Runs on clicking the search button or pressing enter
+    const callSearchFunction = (e) => {
+        e.preventDefault();
+        if (searchValue) {
+            setFinalResult(tempResult);
+            setTempResult([]);
+            resetInputField();
+        }
+        else
+            console.log('Please enter something')
+    }
+
+
+
+
 
     // Fetch search result from search api using GET Request
     const callSearchAPI = () => {
@@ -60,6 +85,17 @@ function SearchComponent() {
                                 {/* Result display section */}
                                 <div className='search-result-div my-5'>
                                     <div className='row'>
+                                        {
+                                            finalResult.map((res, i) => {
+                                                return (
+                                                    <div key={i} className='col-4 col-md-3 col-lg-3 '>
+                                                        <li key={i} >
+                                                            {res}
+                                                        </li>
+                                                    </div>
+                                                );
+                                            })
+                                        }
 
 
                                     </div>
@@ -80,7 +116,7 @@ function SearchComponent() {
                                             <input type="text" id="search_term" value={searchValue} onKeyDown={handleSearchInputChanges} onChange={handleSearchInputChanges} name="search_term" placeholder="Enter Search" ></input>
                                         </div>
                                         <div className='col-2 pl-0 '>
-                                            <button id='submit-btn' type="submit" name="search" value="SEARCH"><i className="fas fa-search"></i></button>
+                                            <button id='submit-btn' type="submit" onClick={callSearchFunction} name="search" value="SEARCH"><i className="fas fa-search"></i></button>
                                         </div>
                                     </form>
                                     {/* Display 3 most matched words section */}
