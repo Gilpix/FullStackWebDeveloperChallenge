@@ -77,7 +77,6 @@ function SearchComponent() {
 
 
     useEffect(() => {
-        console.log("removed : ", removeValue);
         if (removeValue)
             callSearchAPI();
         else
@@ -98,7 +97,7 @@ function SearchComponent() {
                                     <div className='row'>
                                         {
                                             finalResult.map((res, i) => {
-                                                if (res != 'No Result Found') {
+                                                if (res !== 'No Result Found') {
                                                     return (
                                                         <div key={i} className='col-4 col-md-3 col-lg-3 '>
                                                             <li key={i} >
@@ -139,8 +138,8 @@ function SearchComponent() {
                                             tempResult.slice(0, 3).map((res, i) => {
                                                 return (
                                                     <div key={i} className='search-suggestion-div'>
-                                                        <li onClick={() => { if (res != 'No Result Found') setSearchValue(res) }} style={{ color: 'black' }}>{res}</li>
-                                                        <i onClick={() => { if (res != 'No Result Found') setRemoveValue([...removeValue, res]); console.log(removeValue) }} className="fa fa-times"></i>
+                                                        <li onClick={() => { if (res !== 'No Result Found') setSearchValue(res) }} style={{ color: 'black' }}>{res}</li>
+                                                        <i onClick={() => { if (res !== 'No Result Found') setRemoveValue([...removeValue, res]); }} className="fa fa-times"></i>
                                                     </div>
                                                 );
                                             })
