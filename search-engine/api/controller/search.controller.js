@@ -1,14 +1,12 @@
 "use strict";
 const path = require("path"),
     e = require("express"),
-    fetch = require("node-fetch"),
     fs = require('fs');
 
 
 exports.searchAll = (req, res) => {
 
     const text = fs.readFileSync(path.resolve(__dirname, "../public/corpus/hemingway.txt")).toString()
-
 
     let str = text;
 
@@ -21,16 +19,32 @@ exports.searchAll = (req, res) => {
     // Convert string to array of words 
     let splittedText = str.split(' ');
 
+    // Get query string
+    const term = req.query.search;
 
+    // To store the matched result
+    const matchList = [];
 
-    console.log(splittedText)
-
-    res.send('Success')
+    //Returns the list of matched words based on term
+    const matchedSplittedText = splittedText.map(word => {
+        if (matchList.includes(word)) {
+            return;
+        }
+        else {
+            if (word.match(term)) {
+                matchList.push(word);
+            }
+        }
+    });
+    if (matchList.length > 0)
+        res.send({ matchList });
+    else
+        res.send('No result found')
 
 };
 
 
-// Remove special characters from string
+// Remove special characters and line break from string
 const escapeRegExp = (string) => {
-    return string.replace(/[.*+?^",_:\;\#!${}()|[\-\]\\]/gi, ' ')
+    return string.replace(/[.*+?^",_:\r\;\#!${}()|[\-\]\\]/gi, ' ')
 }
