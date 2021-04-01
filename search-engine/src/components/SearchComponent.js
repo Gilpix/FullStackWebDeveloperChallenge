@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react'
 
 function SearchComponent() {
 
+    const [searchValue, setSearchValue] = useState("");
+
+
+
+    const handleSearchInputChanges = async (e) => {
+        await setSearchValue(e.target.value);
+        console.log(searchValue)
+    }
+
+
 
     return (
         <section id='search-section'>
@@ -30,7 +40,7 @@ function SearchComponent() {
                                 <div id="search_bo" className="search-input">
                                     <form method="post" className='row'>
                                         <div className='col-10 pr-0'>
-                                            <input type="text" id="search_term" name="search_term" placeholder="Enter Search" ></input>
+                                            <input type="text" id="search_term" value={searchValue} onKeyDown={handleSearchInputChanges} onChange={handleSearchInputChanges} name="search_term" placeholder="Enter Search" ></input>
                                         </div>
                                         <div className='col-2 pl-0 '>
                                             <button id='submit-btn' type="submit" name="search" value="SEARCH"><i className="fas fa-search"></i></button>
