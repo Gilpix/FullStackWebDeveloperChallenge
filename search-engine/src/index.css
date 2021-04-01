@@ -1,13 +1,154 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  margin: 0 auto;
+  padding: 0px;
+  text-align: center;
+  width: 100%;
+  font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+  background-color: #f2f2f2;
+}
+
+#search-section {
+  background-image: url(https://venngage-wordpress.s3.amazonaws.com/uploads/2018/09/Colorful-Circle-Simple-Background-Image-1.jpg);
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#search-section h2 {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.error-div {
+  height: 40px;
+  color: rgb(255, 46, 46);
+  font-size: small;
+}
+
+.search-input {
+  background: #fff !important;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+}
+
+.search-input input {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0 60px 0 20px;
+  font-size: 1rem;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+}
+#submit-btn {
+  height: 45px;
+  width: 100%;
+  color: rgba(72, 70, 92, 1);
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+#submit-btn:hover {
+  background-color: rgba(214, 213, 223, 0.95);
+}
+
+.fa-times {
+  color: #bbbbbb;
+}
+.fa-times:hover {
+  color: #9c0000;
+}
+.search-input .autocom-box {
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.search-input.active .autocom-box {
+  padding: 10px 8px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.autocom-box li {
+  list-style: none;
+  padding: 8px 12px;
+  width: 80%;
+  border-radius: 3px;
+  font-size: 0.95rem;
+  float: left;
+}
+
+.search-suggestion-div {
+  width: 100%;
+  padding: 5px;
+  z-index: 9999;
+}
+
+.search-suggestion-div:hover {
+  background-color: #ebe7e7;
+}
+
+.search-result-div {
+  padding: 10px;
+  height: 150px;
+  overflow-x: hidden;
+  opacity: 0.8;
+  overflow-y: scroll;
+}
+
+.search-result-div li {
+  font-size: 0.85rem;
+  list-style-type: none;
+  padding: 5px;
+}
+
+@media only screen and (max-width: 786px) {
+  #search-section h2 {
+    font-size: 1.4rem;
+  }
+  #search-section h1 p {
+    font-size: 18px;
+  }
+  #search_box input[type="text"] {
+    text-align: center;
+    padding-left: 0px;
+    font-size: 1rem;
+  }
+  #search_box input[type="submit"] {
+    font-size: 0.95rem;
+  }
 }
