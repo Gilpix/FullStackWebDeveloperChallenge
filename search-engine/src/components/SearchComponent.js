@@ -125,7 +125,7 @@ function SearchComponent() {
                                             tempResult.slice(0, 3).map((res, i) => {
                                                 return (
                                                     <div key={i} className='search-suggestion-div'>
-                                                        <li style={{ color: 'black' }}>{res}</li>
+                                                        <li onClick={() => { setSearchValue(res) }} style={{ color: 'black' }}>{res}</li>
                                                         <i onClick={() => { setRemoveValue([...removeValue, res]); console.log(removeValue) }} className="fa fa-times"></i>
                                                     </div>
                                                 );
