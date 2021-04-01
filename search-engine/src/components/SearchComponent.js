@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import ErrorComponent from './ErrorComponent'
+
 
 function SearchComponent() {
 
@@ -14,12 +16,14 @@ function SearchComponent() {
     //Store final search result to display to the user
     const [finalResult, setFinalResult] = useState([]);
 
+    //Store true or false to display error to the user
+    const [isError, setIsError] = useState(false);
+
 
 
     // Handle input changes
     const handleSearchInputChanges = (e) => {
         setSearchValue(e.target.value);
-        console.log(searchValue)
     }
 
     // Resets the input field 
@@ -33,11 +37,12 @@ function SearchComponent() {
         e.preventDefault();
         if (searchValue) {
             setFinalResult(tempResult);
+            setIsError(false);
             setTempResult([]);
             resetInputField();
         }
         else
-            console.log('Please enter something')
+            setIsError(true);
     }
 
 
@@ -55,7 +60,7 @@ function SearchComponent() {
                         setTempResult(newList)
                     }
                     else {
-                        setTempResult([]);
+                        setTempResult(["No Result Found"]);
                     }
                 });
         }
@@ -63,6 +68,7 @@ function SearchComponent() {
 
     useEffect(() => {
         if (searchValue && /\S/.test(searchValue)) {
+            setIsError(false);
             callSearchAPI();
         }
         else
@@ -92,13 +98,15 @@ function SearchComponent() {
                                     <div className='row'>
                                         {
                                             finalResult.map((res, i) => {
-                                                return (
-                                                    <div key={i} className='col-4 col-md-3 col-lg-3 '>
-                                                        <li key={i} >
-                                                            {res}
-                                                        </li>
-                                                    </div>
-                                                );
+                                                if (res != 'No Result Found') {
+                                                    return (
+                                                        <div key={i} className='col-4 col-md-3 col-lg-3 '>
+                                                            <li key={i} >
+                                                                {res}
+                                                            </li>
+                                                        </div>
+                                                    );
+                                                }
                                             })
                                         }
 
@@ -112,11 +120,12 @@ function SearchComponent() {
                             </div>
                             {/* Error display section */}
                             <div className='col-12 error-div'>
+                                <ErrorComponent isError={isError}></ErrorComponent>
                             </div>
                             {/* Search Bar Input section */}
                             <div className='col-12 col-sm-12 col-md-8 col-lg-6 mx-auto ' style={{ minHeight: '50vh' }}>
                                 <div id="search_bo" className="search-input">
-                                    <form method="post" className='row'>
+                                    <form className='row'>
                                         <div className='col-10 pr-0'>
                                             <input type="text" id="search_term" value={searchValue} onKeyDown={handleSearchInputChanges} onChange={handleSearchInputChanges} name="search_term" placeholder="Enter Search" ></input>
                                         </div>
@@ -130,8 +139,8 @@ function SearchComponent() {
                                             tempResult.slice(0, 3).map((res, i) => {
                                                 return (
                                                     <div key={i} className='search-suggestion-div'>
-                                                        <li onClick={() => { setSearchValue(res) }} style={{ color: 'black' }}>{res}</li>
-                                                        <i onClick={() => { setRemoveValue([...removeValue, res]); console.log(removeValue) }} className="fa fa-times"></i>
+                                                        <li onClick={() => { if (res != 'No Result Found') setSearchValue(res) }} style={{ color: 'black' }}>{res}</li>
+                                                        <i onClick={() => { if (res != 'No Result Found') setRemoveValue([...removeValue, res]); console.log(removeValue) }} className="fa fa-times"></i>
                                                     </div>
                                                 );
                                             })
@@ -139,8 +148,6 @@ function SearchComponent() {
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
