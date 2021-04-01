@@ -62,7 +62,7 @@ function SearchComponent() {
     }
 
     useEffect(() => {
-        if (searchValue) {
+        if (searchValue && /\S/.test(searchValue)) {
             callSearchAPI();
         }
         else
