@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Search Engine - Full-Stack Devlopment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Fullstack web app (React, Express, NodeJS) providing a persistent search engine for searching any word from any type of text file(small or big file). It comprises two parts, a web-based user interface(using ReactJs) and a server component(using NodeJS) that exposes a REST API that provides search results retrieved from a corpus of text.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
 
-### `npm start`
+* Fully Responsive web design
+* Efficent search engine
+* Display 3 most similiar words as you start typing in input field
+* Functionality to remove words from furthur search results
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+ 
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> To run this project locally, you need to first clone this repo into your choice of IDE(recommended VS code). 
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Front-end Setup
+Open first terminal in your IDE(VS code) and run below commands :
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```sh
+cd search-engine
+npm install
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Back-end Setup
+Open second terminal in your IDE(VS code) and run below commands :
 
-### `npm run eject`
+```sh
+cd search-engine/api/
+npm install
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Built with
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Front-end
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* [React](https://reactjs.org/)
+* [Bootstrap](https://getbootstrap.com/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Back-end
 
-## Learn More
+* [NodeJS](https://expressjs.com/)
+* [express](https://expressjs.com/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### [MIT](./LICENSE)
